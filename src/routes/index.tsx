@@ -1,29 +1,15 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   Menu, X, MessageCircle, Check, ArrowRight, Sparkles, Smartphone,
   ShieldCheck, Zap, MapPin, Instagram, Image as ImageIcon, FileText,
   Store, Utensils, Scissors, Home, Wrench, Palette, ChevronDown,
 } from "lucide-react";
-import logoAsset from "@/assets/lmw-logo.png.asset.json";
+import logoAsset from "@/assets/lmw-logo.png";
 import heroMockup from "@/assets/hero-mockup.jpg";
-import imgImperial from "@/assets/portfolio-imperial-store.png.asset.json";
-import imgNoFake from "@/assets/portfolio-no-fake-enseada.png.asset.json";
-import imgSabor from "@/assets/portfolio-sabor-da-casa.png.asset.json";
-import imgManicure from "@/assets/portfolio-manicure-premium.png.asset.json";
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "LMW Sites — Sites profissionais para negócios locais" },
-      { name: "description", content: "Criação de sites, cardápios digitais, catálogos online e landing pages premium para negócios locais. Visual sofisticado, botão direto para WhatsApp e foco em vender mais." },
-      { property: "og:title", content: "LMW Sites — Sites profissionais para negócios locais" },
-      { property: "og:description", content: "Sites e vitrines digitais premium para restaurantes, salões, lojas e prestadores de serviço." },
-      { property: "og:type", content: "website" },
-    ],
-  }),
-  component: Index,
-});
+import imgImperial from "@/assets/portfolio-imperial-store.png";
+import imgNoFake from "@/assets/portfolio-no-fake-enseada.png";
+import imgSabor from "@/assets/portfolio-sabor-da-casa.png";
+import imgManicure from "@/assets/portfolio-manicure-premium.png";
 
 const WHATSAPP_URL =
   "https://wa.me/5547984969457?text=" +
@@ -40,7 +26,7 @@ const NAV = [
 ];
 
 function Logo({ className = "h-12 w-12" }: { className?: string }) {
-  return <img src={logoAsset.url} alt="LMW Sites" className={className} />;
+  return <img src={logoAsset} alt="LMW Sites" className={className} />;
 }
 
 function Header() {
@@ -106,21 +92,20 @@ function Hero() {
         backgroundImage: "radial-gradient(circle, #C9A45A 1px, transparent 1px)",
         backgroundSize: "32px 32px",
       }} />
-
-      {/* Logo decorativa grande no vazio lateral do desktop */}
-      <img
-        src={logoAsset.url}
-        alt=""
-        aria-hidden="true"
-        className="pointer-events-none select-none hidden xl:block absolute top-36 2xl:top-40 left-[max(2rem,calc((100vw-1280px)/2-260px))] w-[300px] 2xl:w-[360px] h-auto object-contain opacity-55 z-10 [filter:drop-shadow(0_0_55px_rgba(201,164,90,0.28))]"
-      />
-
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-10 grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-10 grid lg:grid-cols-[minmax(260px,320px)_1fr_1fr] gap-10 lg:gap-12 items-center">
+        {/* Coluna esquerda: logo grande LMW Sites */}
+        <div className="hidden lg:flex justify-center items-center animate-fade-up">
+          <img
+            src={logoAsset}
+            alt="LMW Sites"
+            className="w-full max-w-[320px] h-auto object-contain opacity-50 [filter:drop-shadow(0_0_45px_rgba(201,164,90,0.25))]"
+          />
+        </div>
         <div className="animate-fade-up">
           {/* Logo mobile reduzida acima do título */}
           <div className="flex lg:hidden justify-center mb-6">
             <img
-              src={logoAsset.url}
+              src={logoAsset}
               alt="LMW Sites"
               className="w-28 h-28 object-contain opacity-70"
             />
@@ -165,7 +150,7 @@ function Hero() {
         </div>
         <div className="relative animate-fade-up">
           <img
-            src={logoAsset.url}
+            src={logoAsset}
             alt=""
             aria-hidden="true"
             className="pointer-events-none select-none absolute -top-10 -right-10 lg:-top-20 lg:-right-24 w-[420px] lg:w-[620px] max-w-none opacity-[0.08] z-0"
@@ -232,7 +217,7 @@ function Brand() {
               <div className="relative">
                 <div className="absolute inset-0 bg-gold/10 rounded-full blur-2xl" />
                 <img
-                  src={logoAsset.url}
+                  src={logoAsset}
                   alt="Logo LMW Sites"
                   className="relative h-40 w-40 lg:h-56 lg:w-56 object-contain drop-shadow-[0_10px_40px_rgba(201,164,90,0.3)]"
                 />
@@ -297,28 +282,28 @@ function Services() {
 
 const PROJECTS = [
   {
-    img: imgImperial.url,
+    img: imgImperial,
     name: "Imperial Store",
     type: "Catálogo / loja online simples",
     desc: "Página comercial com visual sofisticado para apresentar coleção, categorias, identidade da marca e contato direto pelo WhatsApp.",
     link: "https://imperial-store.netlify.app",
   },
   {
-    img: imgNoFake.url,
+    img: imgNoFake,
     name: "No Fake Enseada",
     type: "Site para aluguel de temporada",
     desc: "Vitrine para casas e apartamentos de temporada na Praia de Enseada, com fotos, comodidades, informações importantes e consulta pelo WhatsApp.",
     link: "https://nofake-enseada.vercel.app",
   },
   {
-    img: imgSabor.url,
+    img: imgSabor,
     name: "Sabor da Casa Delivery",
     type: "Cardápio digital / delivery",
     desc: "Página para delivery com apresentação da marca, botão de pedido no WhatsApp e acesso rápido ao cardápio.",
     link: "https://sabor-da-casa-delivery.netlify.app",
   },
   {
-    img: imgManicure.url,
+    img: imgManicure,
     name: "Template Manicure Premium",
     type: "Vitrine para manicure / nail designer",
     desc: "Modelo premium para nail designer ou estúdio de unhas, com apresentação dos serviços, resultados, localização e botão de agendamento.",
@@ -693,7 +678,7 @@ function WhatsFloat() {
   );
 }
 
-function Index() {
+export default function Index() {
   return (
     <div className="min-h-screen">
       <Header />
